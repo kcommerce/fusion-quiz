@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Button Actions</title>
+</head>
+<body>
+
+    <P>
+        <OL>
+           <LI>Click "Allow" to open camera</LI>
+           <LI>Finish Quiz on time </LI>
+           <LI>Not allow to use internet or chatgpt during the quiz</LI>
+    
+        </OL>
+       
+     </P>
+
+<button id="showMessageBtn">Start the Quiz</button>
+<!--button id="closeFrameBtn">Finish</button-->
+
+<script>
+// Function to show a "Hello" message
+function showMessage() {
+    alert("Do not forget to : \n 1. Click Allow to open the camera\n 2. Click OK to do the quiz on the right pane\n");
+
+    document.getElementById("showMessageBtn").disabled = true;
+
+    // Change the URL of another window/frame
+    // Example: Change the URL of the iframe with id "otherFrame" to "https://example.com"
+    // document.getElementById("otherFrame").src = "https://example.com";
+    url="https://forms.office.com/Pages/ResponsePage.aspx?id=UHUeFoymt0mpL23ehzK4RxxRGPJ7-89IkB0nlO_ULhRUMUw2SUQ5SzFTRFQ5UkFXU0QwWVpYQTJOUC4u"
+
+
+    window.parent.frames[2].location = "https://forms.office.com/Pages/ResponsePage.aspx?id=UHUeFoymt0mpL23ehzK4RxxRGPJ7-89IkB0nlO_ULhRUMUw2SUQ5SzFTRFQ5UkFXU0QwWVpYQTJOUC4u";
+
+}
+
+// Function to close the parent frame
+function closeParentFrame() {
+    // Close the parent window
+    window.parent.close();
+}
+
+// Add event listeners to buttons
+document.getElementById("showMessageBtn").addEventListener("click", showMessage);
+//document.getElementById("closeFrameBtn").addEventListener("click", closeParentFrame);
+</script>
+
+
+</body>
+</html>

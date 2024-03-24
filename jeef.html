@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eye and Mouth Tracking with Jeeliz Face Filter</title>
+<style>
+  #jeelizCanvas {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    z-index: -1;
+  }
+</style>
+</head>
+<body>
+<canvas id="jeelizCanvas"></canvas>
+
+<script src="https://cdn.jsdelivr.net/gh/jeeliz/jeelizFaceFilter/dist/jeelizFaceFilter.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const canvas = document.getElementById('jeelizCanvas');
+
+  function initializeJeeliz() {
+    JEEF.setup({
+      canvasId: 'jeelizCanvas',
+      NNCPath: 'https://cdn.jsdelivr.net/gh/jeeliz/jeelizFaceFilter/dist/NNC.json',
+      callbackReady: startDetection,
+      followZRot: true
+    });
+  }
+
+  function startDetection() {
+    JEEF.onDetect(function(isDetected) {
+      if (isDetected) {
+        const mouthOpened = JEEF.getMouthOpening() > 0.6; // Adjust threshold as needed
+        const eyeBlink = JEEF.getEyeBlink() > 0.2; // Adjust threshold as needed
+
+        // Display mouth open status
+        if (mouthOpened) {
+          console.log('Mouth open');
+        } else {
+          console.log('Mouth closed');
+        }
+
+        // Display eye blink status
+        if (eyeBlink) {
+          console.log('Eye blink detected');
+        }
+      }
+    });
+  }
+
+  initializeJeeliz();
+});
+</script>
+</body>
+</html>

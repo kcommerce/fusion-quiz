@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Webcam Image Capture</title>
+</head>
+<body>
+<div>
+  <video id="video" width="640" height="480" autoplay></video>
+  <button id="capture-btn">Capture</button>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const video = document.getElementById('video');
+  const captureBtn = document.getElementById('capture-btn');
+  
+  // Access webcam
+  navigator.mediaDevices.getUserMedia({ video: true })
+    .then(stream => {
+      video.srcObject = stream;
+    })
+    .catch(err => {
+      console.error('Error accessing webcam:', err);
+    });
+  
+  // Capture image from webcam
+  captureBtn.addEventListener('click', () => {
+    const canvas = document.createElement('canvas');
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+    canvas.toBlob(uploadImage, 'image/jpeg');
+  });
+
+  // Upload image
+  function uploadImage(blob) {
+    const formData = new FormData();
+    formData.append('image', blob, 'webcam-image.jpg');
+
+    fetch('YOUR_UPLOAD_URL_HERE', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Failed to upload image');
+      }
+      console.log('Image uploaded successfully');
+    })
+    .catch(error => {
+      console.error('Error uploading image:', error);
+    });
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eye and Mouth Tracking with WebGazer.js</title>
+<style>
+  #webgazerVideoFeed {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    z-index: -1;
+  }
+
+  #eyeCanvas {
+    position: absolute;
+    z-index: 0;
+  }
+</style>
+</head>
+<body>
+<video id="webgazerVideoFeed"></video>
+<canvas id="eyeCanvas" width="640" height="480"></canvas>
+
+<script src="webgazer.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const video = document.getElementById('webgazerVideoFeed');
+  const canvas = document.getElementById('eyeCanvas');
+  const clmtrackrModelURL = 'jeelizFaceFilter.js';
+
+  function initializeWebGazer() {
+    webgazer.setGazeListener(function(data, elapsedTime) {
+      if (data == null) {
+        return;
+      }
+      
+      const gazeX = data.x; // Horizontal gaze position
+      const gazeY = data.y; // Vertical gaze position
+      const mouthOpened = data.elements.mouth.opened;
+
+      // Update canvas with gaze position
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.beginPath();
+      ctx.arc(gazeX, gazeY, 5, 0, 2 * Math.PI);
+      ctx.fillStyle = 'red';
+      ctx.fill();
+
+      // Display mouth open status
+      if (mouthOpened) {
+        console.log('Mouth open');
+      } else {
+        console.log('Mouth closed');
+      }
+    }).begin();
+  }
+
+  function setupWebcam() {
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(stream => {
+        video.srcObject = stream;
+      })
+      .catch(err => {
+        console.error('Error accessing webcam:', err);
+      });
+  }
+
+  // Load WebGazer and setup webcam once the library is loaded
+  webgazer.setRegression('ridge')
+            .setTracker('clmtrackr')
+            .setGazeListener(function(data, elapsedTime) {
+              if (data == null) {
+                return;
+              }
+            })
+            .begin()
+            .showPredictionPoints(false); // Disable default mouse prediction
+
+  setupWebcam();
+});
+</script>
+</body>
+</html>

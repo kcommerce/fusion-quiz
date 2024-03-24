@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Eye Blink Detection with Webcam</title>
+<script src="webgazer.js"></script>
+</head>
+<body>
+  <h1>Eye Blink Detection</h1>
+  <video id="webcam" width="320" height="240" autoplay></video>
+  <hr/>
+  <p id="blinkMessage"></p>
+  <script>
+    // Function to access webcam feed
+    function startWebcam() {
+      navigator.mediaDevices.getUserMedia({ video: true })
+        .then(function(stream) {
+          var video = document.getElementById("webcam");
+          video.srcObject = stream;
+          video.play();
+        })
+        .catch(function(err) {
+          console.error("Error accessing webcam:", err);
+        });
+    }
+
+    webgazer.setRegression('ridge'); // Optional for better accuracy
+
+    webgazer.setGazeListener(function(data) {
+      if (webgazer.isBlink(data)) {
+        document.getElementById('blinkMessage').textContent = "Eye blink detected!";
+      } else {
+        document.getElementById('blinkMessage').textContent = "Hello";
+      }
+    });
+
+    startWebcam();
+    webgazer.begin();
+  </script>
+</body>
+</html>
