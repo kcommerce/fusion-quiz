@@ -8,16 +8,25 @@
 <body>
 
     <P>
+	Rules:<br/>
         <OL>
            <LI>Click "Allow" to open camera</LI>
            <LI>Finish Quiz on time </LI>
-           <LI>Not allow to use internet or chatgpt during the quiz</LI>
+           <LI>Not allow to use internet or chatgpt to find the solutions</LI>
+           <LI>Webcam will be monitored</LI>
+
+
     
         </OL>
+	
        
      </P>
 
-<button id="showMessageBtn">Start the Quiz</button>
+<button id="showMessageBtn">Project Quiz</button>
+<button id="showMessageBtn2">Technical Quiz</button>
+<button id="showMessageBtn4">Network Quiz</button>
+<button id="showMessageBtn3">Personal Quiz</button>
+<button id="showMessageBtn5">English Quiz</button>
 <!--button id="closeFrameBtn">Finish</button-->
 
 <script>
@@ -30,12 +39,64 @@ function showMessage() {
     // Change the URL of another window/frame
     // Example: Change the URL of the iframe with id "otherFrame" to "https://example.com"
     // document.getElementById("otherFrame").src = "https://example.com";
-    url="https://forms.office.com/Pages/ResponsePage.aspx?id=UHUeFoymt0mpL23ehzK4RxxRGPJ7-89IkB0nlO_ULhRUMUw2SUQ5SzFTRFQ5UkFXU0QwWVpYQTJOUC4u"
-
-
-    window.parent.frames[2].location = "https://forms.office.com/Pages/ResponsePage.aspx?id=UHUeFoymt0mpL23ehzK4RxxRGPJ7-89IkB0nlO_ULhRUMUw2SUQ5SzFTRFQ5UkFXU0QwWVpYQTJOUC4u";
+    
+    window.parent.frames[2].location = "https://forms.office.com/Pages/ResponsePage.aspx?id=UHUeFoymt0mpL23ehzK4R3g2fngFswtAroSTFN5ds0dUMFIzOTVHUzY4WVpTNU82SU1SRjdWR0ZBQy4u";
 
 }
+
+function showMessage2() {
+    alert("Do not forget to : \n 1. Click Allow to open the camera\n 2. Click OK to do the quiz on the right pane\n");
+
+    document.getElementById("showMessageBtn2").disabled = true;
+
+    // Change the URL of another window/frame
+    // Example: Change the URL of the iframe with id "otherFrame" to "https://example.com"
+    // document.getElementById("otherFrame").src = "https://example.com";
+    
+    window.parent.frames[2].location = "https://forms.office.com/Pages/ResponsePage.aspx?id=UHUeFoymt0mpL23ehzK4R3g2fngFswtAroSTFN5ds0dUN1o5VE5HQ1YxVzhUNjdTVEZJWUlRQlJRWi4u";
+
+}
+
+function showMessage3() {
+    alert("Do not forget to : \n 1. Click Allow to open the camera\n 2. Click OK to do the quiz on the right pane\n");
+
+    document.getElementById("showMessageBtn3").disabled = true;
+
+    // Change the URL of another window/frame
+    // Example: Change the URL of the iframe with id "otherFrame" to "https://example.com"
+    // document.getElementById("otherFrame").src = "https://example.com";
+    
+    window.parent.frames[2].location = "https://forms.office.com/Pages/ResponsePage.aspx?id=UHUeFoymt0mpL23ehzK4R3g2fngFswtAroSTFN5ds0dUMVFFRVQ0STgxQTYxMkJDUkY0SkpKMkVEWS4u";
+
+}
+
+function showMessage4() {
+    alert("Do not forget to : \n 1. Click Allow to open the camera\n 2. Click OK to do the quiz on the right pane\n");
+
+    document.getElementById("showMessageBtn4").disabled = true;
+
+    // Change the URL of another window/frame
+    // Example: Change the URL of the iframe with id "otherFrame" to "https://example.com"
+    // document.getElementById("otherFrame").src = "https://example.com";
+    
+    window.parent.frames[2].location = "https://forms.office.com/Pages/ResponsePage.aspx?id=UHUeFoymt0mpL23ehzK4R3g2fngFswtAroSTFN5ds0dUMlJIRFlKTDg1Tk5IRE8wN1ZIR0JKTk0xQi4u";
+
+}
+function showMessage5() {
+    alert("Do not forget to : \n 1. Click Allow to open the camera\n 2. Click OK to do the quiz on the right pane\n");
+
+    document.getElementById("showMessageBtn4").disabled = true;
+
+    // Change the URL of another window/frame
+    // Example: Change the URL of the iframe with id "otherFrame" to "https://example.com"
+    // document.getElementById("otherFrame").src = "https://example.com";
+   
+    window.parent.frames[2].location = "https://forms.office.com/Pages/ResponsePage.aspx?id=UHUeFoymt0mpL23ehzK4R3g2fngFswtAroSTFN5ds0dUOEhTNDdVRldSU0pBTUlOUlBVREcyQ1BDQy4u"
+
+}
+
+
+
 
 // Function to close the parent frame
 function closeParentFrame() {
@@ -45,6 +106,10 @@ function closeParentFrame() {
 
 // Add event listeners to buttons
 document.getElementById("showMessageBtn").addEventListener("click", showMessage);
+document.getElementById("showMessageBtn2").addEventListener("click", showMessage2);
+document.getElementById("showMessageBtn3").addEventListener("click", showMessage3);
+document.getElementById("showMessageBtn4").addEventListener("click", showMessage4);
+document.getElementById("showMessageBtn5").addEventListener("click", showMessage5);
 //document.getElementById("closeFrameBtn").addEventListener("click", closeParentFrame);
 </script>
 
